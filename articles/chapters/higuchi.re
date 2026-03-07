@@ -2,11 +2,11 @@
 = ChainlitのUIを@<ruby>{癖, へき}に染める
 
 == はじめに
-生成AIが一般社会に急速に浸透し、我々の生活やワークスタイルは大きく変化しました。日々の献立から専門的な分野の調査分析まで、普段使う言葉で相談できる生成AIは、もはや日常になくてはならないものになっています。それはまるで、先人たちがSF作品で描いた世界のようです。
+LLMが一般社会に急速に浸透し、我々の生活やワークスタイルは大きく変化しました。日々の献立から専門的な分野の調査分析まで、普段使う言葉で相談できるLLMは、もはや日常になくてはならないものになっています。それはまるで、先人たちがSF作品で描いた世界のようです。
 
-ゲームに絞っても、人工知能との関わりを描いた作品は数多く思い当たります。「ナビ」と呼ばれる人工知能を使ってインターネットウイルスを駆逐したり、2つのポータルと人間の知恵を駆使して暴走した人工知能と対峙したり。もしかしたら現実の生成AIに対し、単なるツールを超えた人格としての親近感を覚える方もいるのではないでしょうか。少なくとも私はそうです。
+ゲームに絞っても、人工知能との関わりを描いた作品は数多く思い当たります。「ナビ」と呼ばれる人工知能を使ってインターネットウイルスを駆逐したり、2つのポータルと人間の知恵を駆使して暴走した人工知能と対峙したり。もしかしたらLLMに対し、単なるツールを超えた人格としての親近感を覚える方もいるのではないでしょうか。少なくとも私はそうです。
 
-このような作品では、世界観に合わせて近未来的なUIが導入される傾向にあります。その鮮烈なネオンカラーと非自然的なポリゴンデザインの格好良さは脳裏に焼きついて離れません。現実世界に存在する生成AIサービスのUIデザインはシンプルなものが多いですが、あえてSF風に寄せてみたら、日々の業務がちょっと楽しくなるのではないか？そんな思いつきから、ChainlitのUI変更に挑戦することにしました。
+このような作品では、世界観に合わせて近未来的なUIが導入される傾向にあります。その鮮烈なネオンカラーと非自然的なポリゴンデザインの格好良さは脳裏に焼きついて離れません。現実世界に存在するLLMのUIデザインはシンプルなものが多いですが、あえてSF風に寄せてみたら、日々の業務がちょっと楽しくなるのではないか？そんな思いつきから、ChainlitのUI変更に挑戦することにしました。
 
 == この記事の取扱範囲と資料について
 === 取扱範囲・取り扱わない範囲
@@ -16,28 +16,28 @@
 ==== CSS, JSの詳しい解説
 
 CSSやJSを使ってUIを変更していきますが、それぞれの基本的な記法の解説は省略します。
-また、Chainlitの内部ではReactやTailwind CSSなどが採用されていますが、今回のカスタマイズではこれらを直接操作しないため、解説は行いません。
+また、ChainlitのフロントエンドではReact, Shadcn, Tailwindが使われていますが、いずれも利用していないので、解説も省略します。
 
 ==== Chainlitのその他の要素の解説
 
-UI変更の実装のために、ベースとなる簡単なアプリケーションを作成しました。具体的には下記の機能を持ちます。
+UI変更の実装のために、ベースとなる簡単なアプリケーションを作成しました。具体的には下記のような機能を持ちます。
 
  * ログイン機能
  * 送信されたメッセージをオウム返しする
- * 「@<code>{demo}」と入力すると@<code>{text}, @<code>{plotly}, @<code>{table}の@<code>{element}を返す
+ * 「demo」と入力するとtext, plotly, tableのelementを返す
 
 しかし、あくまでもこの記事の主題はUI変更のため、この機能の解説は省略します。
 
-==={sample-code} サンプルコードとAppendixサイトについて
+=== サンプルコードとAppendixサイトについて
 
 この記事ではUIのカラー変更やアニメーション適用を扱いますが、書籍版はモノクロ印刷です。
 これらの内容の補足のために、Appendixサイト@<fn>{appendix-site}に参考資料を掲載しました。
 合わせて、装飾前後のコードもGitHubで公開しています@<fn>{base-repo} @<fn>{finished-repo}。
 必要に応じてご参照ください。
 
-//footnote[appendix-site][Appendixサイト: @<href>{https://seahawk-tiger.github.io/chainlit-ui-appendix/}]
-//footnote[finished-repo][変更後コード: @<href>{https://github.com/seahawk-tiger/chainlit-ui-playground/tree/main}]
-//footnote[base-repo][変更前コード: @<href>{https://github.com/seahawk-tiger/chainlit-ui-playground/tree/base}]
+//footnote[appendix-site][Appendixサイト https://seahawk-tiger.github.io/chainlit-ui-appendix/]
+//footnote[finished-repo][変更後コード https://github.com/seahawk-tiger/chainlit-ui-playground/tree/main]
+//footnote[base-repo][変更前コード https://github.com/seahawk-tiger/chainlit-ui-playground/tree/base]
 
 //image[seahawk-qr-01][サンプルコード・AppendixサイトのQRコード][scale=0.6]
 
@@ -46,29 +46,26 @@ UI変更の実装のために、ベースとなる簡単なアプリケーショ
 
 == ChainlitのUI変更の仕様を知る
 
-ChainlitはLLMとの会話アプリを簡単に実装することを主眼に作られています。フロントエンド開発の知識が乏しくてもアプリを構築できるよう、標準で使いやすいチャットUIが用意されています。これらはReact + Tailwind + Shadcn/uiの構成でChainlit内部に実装されており、通常のプロジェクト作成時にはフロントエンドのソースコードはプロジェクトディレクトリに生成されません。
+ChainlitはLLMとの会話アプリを簡単に実装することを主眼に作られています。フロントエンド開発の知識が乏しくてもアプリを構築できるよう、標準で使いやすいチャットUIが用意されています。これらはReact + Tailwind + shadcn/uiの構成でChainlit内部に実装されており、通常のプロジェクト作成時にはフロントエンドのソースコードはプロジェクトディレクトリに生成されません。
 
-ただし、簡単なデザイン変更はサポートされています。具体的には、@<code>{config.toml}に装飾用のファイル（CSS, JS, ロゴなど）のパスを書き込むことで、標準UIのスタイルを上書きできます。
+ただし、簡単なデザイン変更はサポートされています。具体的には、config.tomlに装飾用のファイル（CSS, JS, faviconなど）のパスを書き込むことで、標準UIのスタイルを上書きできます。
 
 整理すると、@<b>{HTMLは直接の編集が難しく、CSSとJSは適用が容易}という構図です。そのため、この記事では@<b>{標準UIをCSSで静的・動的に装飾しつつ、必要であればJSでHTMLの要素を編集する}という作戦で実装することにしました。
 
-=={design} 実装するデザインとアニメーション
+=={design} 実装するデザイン
 
-Figmaでスタイルガイド@<fn>{color-tokens}とデザイン案@<fn>{design-color}を作成しました。この案を元に実装していきます。厳密に再現するというよりは、実装難度に応じて多少の差異を許容することにします。
-このうち、ユーザー・アシスタントの両方の吹き出しには短い時間で2回枠の色が明るくなるような演出を付けます（以降、明滅の演出と呼びます）。
+Figmaでトンマナ案@<fn>{color-tokens}とデザイン案@<fn>{design-color}を作成しました。この案を元に実装していきます。厳密に再現するというよりは、実装難度に応じて多少の差異を許容することにします。
 
-//image[seahawk-design-prop-ml-combined][デザインサンプルとAppendixサイトのQRコード][scale=0.7]
+//image[seahawk-design-prop-ml-combined][デザインサンプルとAppendix QRコード][scale=0.7]
 
-また、今回の実装にあたり、円をモチーフにしたロゴを作成しました@<fn>{logo-file-url}。このロゴは、半径の異なる8種類の円から構成されています@<fn>{logo-desc}。演出として、このロゴの円を回転させます。
+また、今回の実装にあたり、円をモチーフにしたロゴを作成しました。このロゴは、半径の異なる8種類の円から構成されています@<fn>{logo-desc}。演出として、このロゴの円を回転させます。
 
-//image[seahawk-logo-full-bg-ml-combined][ロゴとAppendixサイトのQRコード][scale=0.6]
+//image[seahawk-logo-full-bg-ml-combined][ロゴとAppendix QRコード][scale=0.6]
 
 
-//footnote[color-tokens][スタイルガイド: @<href>{https://seahawk-tiger.github.io/chainlit-ui-appendix/pages/appendix1-color-and-font.html}]
-//footnote[design-color][デザイン案: @<href>{https://seahawk-tiger.github.io/chainlit-ui-appendix/pages/appendix2-ui-design-proto.html}]
-//footnote[logo-file-url][ロゴのサンプルファイル: @<href>{https://github.com/seahawk-tiger/chainlit-ui-playground/tree/base/sample_files}]
-//footnote[logo-desc][ロゴの構成について: @<href>{https://seahawk-tiger.github.io/chainlit-ui-appendix/pages/appendix3-logo-structure.html}]
-//footnote[logo-file-ref][ロゴのサンプルファイルは@<hd>{design}を参照。]
+//footnote[color-tokens][トンマナ https://seahawk-tiger.github.io/chainlit-ui-appendix/pages/appendix1-color-and-font.html]
+//footnote[design-color][デザイン案 https://seahawk-tiger.github.io/chainlit-ui-appendix/pages/appendix2-ui-design-proto.html]
+//footnote[logo-desc][ロゴの構成 https://seahawk-tiger.github.io/chainlit-ui-appendix/pages/appendix3-logo-structure.html]
 
 
 == 変更していこう
@@ -76,24 +73,21 @@ Figmaでスタイルガイド@<fn>{color-tokens}とデザイン案@<fn>{design-c
 ==={change-logo} ロゴを変更する
 手始めにロゴを変えていきましょう。このロゴはfaviconにも使われます。
 
-まず、@<code>{.chainlit}ディレクトリ@<fn>{chainlit-dir}と同じ階層に@<code>{public}ディレクトリを作り、faviconとロゴに使うファイルを配置します。
-
-//footnote[chainlit-dir][.chainlitディレクトリについての詳細は@<chap>{first_steps}を参照してください。]
-
-//emlist[ディレクトリ構造]{
+まず、.chainlitディレクトリと同じ階層にpublicディレクトリを作り、faviconとロゴに使うファイルを配置します。
+//emlist[]{
 .chainlit
 ├── translations/ …省略
 └── config.toml
-...
+
 public/ <- 作成
 └── logo.svg <- 追加
 ※ その他のディレクトリは省略
 //}
 
-その後、@<code>{config.toml}を開き、配置したロゴファイルのパスを入力すれば完了です。
-faviconにも@<code>{logo_file_url}で指定されたファイルが使われます。
+その後、config.tomlを開き、logo_file_urlのコメントアウトを解除します。そして配置したロゴファイルのパスを入力すれば完了です。
+faviconにもlogo_file_urlで指定されたファイルが使われます。
 ついでに、AIの返答メッセージの横に表示されるアイコンも同じロゴファイルにしておきましょう。
-//emlist[.chainlit/config.toml][toml]{
+//emlist[][toml]{
 # Load assistant logo directly from URL.
 logo_file_url = "/public/logo.svg"
 
@@ -101,10 +95,8 @@ logo_file_url = "/public/logo.svg"
 default_avatar_file_url = "/public/logo.svg"
 //}
 
-補足として、@<code>{config.toml}には他にもログインページの背景画像等の設定項目があります。
-今回は設定しませんが、これらを使えば標準UIのデザインをさらに好みに近づけられます。
-下記は対応するキーと記載例です。
-//emlist[.chainlit/config.toml][toml]{
+補足として、config.tomlには他にもログインページの背景画像等の設定項目があります。これらを使えば標準UIのデザインをさらに好みに近づけられます。
+//emlist[][toml]{
 login_page_image = "/public/custom-background.jpg"
 login_page_image_filter = "brightness-50 grayscale"
 login_page_image_dark_filter = "contrast-200 blur-sm"
@@ -112,9 +104,9 @@ custom_meta_image_url = "(略)/logo/chainlit_banner.png"
 //}
 
 === 見出しやボタンの表記を変える
-@<code>{.chainlit}の配下に@<code>{translations}というディレクトリと多数のJSONが自動生成されます。これらは、ChainlitのUIで使用されるラベルやボタン、メニューなどのテキストの翻訳辞書です。各言語でファイルが分かれており、それぞれのファイルを編集することで、UIの表示文言を任意の言葉に変更できます。デフォルトでは「ログイン」「パスワード」など、日本語を使った表記になっているのですが、今回は見た目重視で英単語で表記されるように変更します。
+.chainlitの配下にtranslationsというディレクトリと多数のJSONが自動生成されます。これらは、ChainlitのUIで使用されるラベルやボタン、メニューなどのテキストの翻訳辞書です。各言語でファイルが分かれており、それぞれのファイルを編集することで、UIの表示文言を任意の言葉に変更できます。デフォルトでは「ログイン」「パスワード」など、日本語を使った表記になっているのですが、今回は見た目重視で英単語で表記されるように変更します。
 
-//emlist[.chainlit/translations/ja.json][json]{
+//emlist[][json]{
     "auth": {
         "login": {
             "title": "SYSTEM LOGIN",
@@ -135,14 +127,14 @@ custom_meta_image_url = "(略)/logo/chainlit_banner.png"
 
 === 静的要素を変更する
 
-===={initial_settings} 初期設定と@<code>{custom_theme}について
+===={initial_settings} 初期設定とcustom_themeについて
 
 
 ここからは、CSSを編集して静的要素を変更していきます。
 
-ロゴと同様に、装飾に使うスタイルシートを@<code>{public}配下に配置します。もう一つ大事な要素として、@<code>{theme.json}というファイルも作っておきましょう。この@<code>{theme.json}は、ChainlitのUIで使用されるカラーパレットやデザイントークンを定義するためのファイルです。これを利用することで、アプリケーション全体の配色やUIテーマを統一できます。
+ロゴと同様に、装飾に使うスタイルシートをpublic配下に配置します。もう一つ大事な要素として、theme.jsonというファイルも作っておきましょう。このtheme.jsonは、ChainlitのUIで使用されるカラーパレットやデザイントークンを定義するためのファイルです。これを利用することで、アプリケーション全体の配色やUIテーマを統一できます。
 
-//emlist[ディレクトリ構造]{
+//emlist[]{
 その他のディレクトリは省略
 .chainlit
 ├── translations/ …省略
@@ -155,19 +147,19 @@ public/
 └── stylesheet.css <- 新規作成
 //}
 
-これらのファイルが作成できたら、@<code>{config.toml}を編集します。これもロゴの登録と同じ要領です。
-注意点として、@<code>{custom_css} や @<code>{custom_js} は @<code>{.chainlit/config.toml}にコメント付きの設定例が記載されていますが、@<code>{custom_theme}の設定はテンプレートに含まれていない場合があります。その場合は、手動で@<code>{config.toml}に@<code>{custom_theme}の設定を記載してください。
+これらのファイルが作成できたら、config.tomlを編集します。これもロゴの登録と同じ要領です。
+注意点として、custom_css や custom_js は .chainlit/config.tomlにコメント付きの設定例が記載されていますが、custom_themeの設定はテンプレートに含まれていない場合があります。その場合は、手動でconfig.tomlにcustom_themeの設定を記載してください。
 
 また、JSファイルの登録も同じ要領です。後で使うのでここで一緒に作っておきましょう。
 
-//emlist[.chainlit/config.toml][toml]{
+//emlist[][toml]{
 custom_theme = "/public/theme.json"
 custom_css = "/public/stylesheet.css"
 custom_js = "/public/effects.js"
 //}
 
-その後、@<code>{theme.json}にあらかじめ設計したカラーや枠線のスタイルを記載します。この記法はShadcnのTheme記法に従います。下記に設定例を示しますが、詳細は章末のリンクを参照してください。
-//emlist[public/theme.json][json]{
+その後、theme.jsonにあらかじめ設計したカラーや枠線のトンマナを記載します。この記法はShadcnのTheme記法に従います。下記に設定例を示しますが、詳細は章末のリンクを参照してください。
+//emlist[][json]{
 {
   "custom_fonts": [],
   "variables": {
@@ -195,22 +187,22 @@ custom_js = "/public/effects.js"
  * ロゴを入力欄の上部に表示する
  * その他の要素の変更
 
-===== 標準UIのロゴを消し、入力欄を中央に配置する @<br>{}
+===== 標準UIのロゴを消して、入力欄を中央に配置する @<br>{}
 まず、ログイン画面の判定のために、下記のセレクタを利用します。
-//emlist[public/stylesheet.css][css]{
+//emlist[][css]{
 body:has(input[type="password"]):has(button[type="submit"])
 //}
 
-続いて、標準UIの背景画像は下記のセレクタで指定できるので、@<code>{display: none}でまるごと消します。
-//emlist[public/stylesheet.css][css]{
+続いて、標準UIの背景画像は下記のセレクタで指定できるので、display: noneでまるごと消します。
+//emlist[][css]{
 body:has(input[type="password"]):has(button[type="submit"])
   img.absolute.inset-0.h-full.w-full.object-cover {
   display: none !important;
 }
 //}
 
-続いて、フォームを中央に配置する処理です。まず、フォームを含む@<code>{root}を全面に広げ中央配置します。その後、フォームを持つ要素を中央寄せします。
-//emlist[public/stylesheet.css][css]{
+続いて、フォームを中央に配置する処理です。まず、フォームを含むrootを全面に広げ中央配置します。その後、フォームを持つ要素をセンター寄せします。
+//emlist[][css]{
 body:has(input[type="password"]):has(button[type="submit"]) #root,
 body:has(input[type="password"]):has(button[type="submit"]) main{
   ...
@@ -236,9 +228,9 @@ body:has(input[type="password"]):has(button[type="submit"])
 //}
 
 ===== ロゴを入力欄の上部に表示する @<br>{}
-ロゴを画面の中心かつ入力欄の上に配置するため、@<code>{logo.svg}を使った要素を探して、中央寄せします。
+ロゴを画面の中心かつ入力欄の上に配置するため、logo.svgを使った要素を探して、センター寄せします。
 
-//emlist[public/stylesheet.css][css]{
+//emlist[][css]{
 body:has(input[type="password"]):has(button[type="submit"])
   :is(img.logo, img[src="/public/logo.svg"], img[src="/logo"]) {
   display: block !important;
@@ -249,9 +241,9 @@ body:has(input[type="password"]):has(button[type="submit"])
 //}
 
 ===== その他の要素の変更 @<br>{}
-あとはフォームの要素や見出し、ボタンを装飾します。下記は入力ボックスの例です。ログイン画面全体の@<code>{input}を指定しており、同じ要領で@<code>{button}も装飾しています。他の装飾の解説は割愛します。
+あとはフォームの要素や見出し、ボタンを装飾します。下記は入力ボックスの例です。ログイン画面全体のinputを指定しており、同じ要領でbuttonも装飾しています。
 
-//emlist[public/stylesheet.css][css]{
+//emlist[][css]{
 body:has(input[type="password"]):has(button[type="submit"]) input {
   width: 100%;
   height: 42px;
@@ -261,32 +253,33 @@ body:has(input[type="password"]):has(button[type="submit"]) input {
   ...
 //}
 
+実際には他にも細かな調整をしていますが、ここでの解説は省略します。
+
 CSS適用により、ログイン画面はこのような見た目になりました。デザイン案に近づいてきましたね。
 
 //image[seahawk-customized-login-2-ml][装飾後のログイン画面][scale=0.45]
-
 
 ==== トーク画面の変更
 
 ログイン画面に比べて、トーク画面の変更はシンプルです。トーク画面の判定には下記のセレクタを利用します。
 
-//emlist[public/stylesheet.css][css]{
+//emlist[][css]{
 body:not(:has(input[type="password"]):has(button[type="submit"]))
 //}
 
-トーク画面には入力ボックス・ユーザー側の吹き出し・アシスタント側の吹き出し（LLM側の返答）があり、それぞれのセレクタは下記の通りです。アシスタント側の吹き出しはユーザー側の吹き出しに該当するクラスの除外により区別しています。
+トーク画面には入力ボックス・ユーザーバブル・アシスタントバブル（LLM側の返答）があり、それぞれのセレクタは下記の通りです。アシスタントバブルはユーザーバブルに該当するクラスの除外により区別しています。
 
-//emlist[public/stylesheet.css][css]{
+//emlist[][css]{
 /* 入力ボックスのセレクタ */
 body:not(:has(input[type="password"]):has(button[type="submit"]))
   #message-composer
 
-/* ユーザー側の吹き出しのセレクタ */
+/* ユーザーバブルのセレクタ */
 body:not(:has(input[type="password"]):has(button[type="submit"]))
   div.px-5.py-2\.5.relative.bg-accent.rounded-3xl
   .max-w-\[70\%\].flex-grow-0
 
-/* アシスタント側の吹き出しのセレクタ */
+/* アシスタントバブルのセレクタ */
 body:not(:has(input[type="password"]):has(button[type="submit"]))
   .message-content:not(
     .px-5.py-2\.5.relative.bg-accent.rounded-3xl
@@ -295,17 +288,18 @@ body:not(:has(input[type="password"]):has(button[type="submit"]))
   )
 //}
 
-===== 吹き出しの装飾について @<br>{}
-ここで、標準UIの吹き出しの構造を確認しましょう。
-ユーザー側の吹き出しには角丸四角の囲み枠があります。
-アシスタント側の吹き出しには、囲み枠はありません。左にアイコン、その横に返答メッセージが表示されます。
+===== バブルの装飾について @<br>{}
+ここで、標準UIのバブルの構造を確認しましょう。
+ユーザーバブルには角丸四角の囲み枠があります。
+アシスタントバブルには、囲み枠はありません。左にアイコン、その横に返答メッセージが表示されます。
 
-//image[seahawk-default-bubble-ml][標準の吹き出しデザイン][scale=0.5]
+//image[seahawk-default-bubble-ml][標準のバブルデザイン][scale=0.6]
 
-ユーザー側の吹き出しの実装では、囲み枠を非表示にした上で、その内部の枠に装飾を付与しています。
-//emlist[public/stylesheet.css][css]{
+ユーザーバブルの実装では、囲み枠を非表示にした上で、その内部の枠に装飾を付与しています。
+//emlist[][css]{
 body:not(
-  :has(input[type="password"]) :has(button[type="submit"])
+  :has(input[type="password"])
+  :has(button[type="submit"])
 )
   div.px-5.py-2\.5.relative.bg-accent.rounded-3xl
   .max-w-\[70\%\].flex-grow-0
@@ -316,8 +310,8 @@ body:not(
 }
 //}
 
-一方、アシスタント側の吹き出しでは囲み枠の削除は不要で、テキスト要素の親要素を装飾すればOKです。ただし、アイコンを含む分、テキスト領域の横幅がユーザーのものよりも短いです。そのため、テキスト領域を広げた上で、アイコンとの横幅の位置調整が必要になります。
-//emlist[public/stylesheet.css][css]{
+一方、アシスタントバブルでは囲み枠の削除は不要で、テキスト要素の親要素を装飾すればOKです。ただし、アイコンを含む分、テキスト領域の横幅がユーザーのものよりも短いです。そのため、テキスト領域を広げた上で、アイコンとの横幅の位置調整が必要になります。
+//emlist[][css]{
 span.relative.flex.shrink-0
   .overflow-hidden.rounded-full[data-state]
   :has(> img[alt="Avatar for Assistant"])
@@ -331,18 +325,15 @@ span.relative.flex.shrink-0
 以上の編集を終えて、静的デザインは完成です。
 //image[seahawk-talk-compare-ml][適用後のトーク画面][scale=0.8]
 
-
-//pagebreak
-
 === 動的要素を変更する
 
-ここからは、JSファイルとCSSファイルの両方を編集し、吹き出しやロゴに動きをつけていきます。
-@<code>{custom_js}の設定は @<hd>{initial_settings} を参照してください。
+ここからは、JSファイルとCSSファイルの両方を編集し、バブルやロゴに動きをつけていきます。
+custom_jsの設定は @<hd>{initial_settings} を参照してください。
 
-==== 吹き出しに明滅の演出をつける
+==== バブルに明滅の演出をつける
 
 
-メッセージを送信したあとや、アシスタント側の返答が表示されるときにチカチカと2回明滅するような装飾をつけます。
+メッセージを送信したあとや、LLM側の返答が表示されるときにチカチカと2回明滅するような装飾をつけます。
 
 //image[seahawk-blink-animation-flow][明滅アニメーションの概要][scale=1]
 
@@ -350,13 +341,13 @@ span.relative.flex.shrink-0
 
 //table[class-role][クラスと役割について]{
 状態	クラス名	役割
-target	@<code>{cl-anim-target}	装飾適用対象の要素につける
-active	@<code>{cl-anim-enter-active}	装飾を実際に表示している要素につける
-done	@<code>{cl-anim-done}	装飾を表示し終わった要素につける
+target	cl-anim-target	装飾適用対象の要素につける
+active	cl-anim-enter-active	装飾を実際に表示している要素につける
+done	cl-anim-done	装飾を表示し終わった要素につける
 //}
 
-これらのクラスの付与は@<code>{effects.js}内の@<code>{animateElement}関数で行っています。
-//emlist[public/effects.js][javascript]{
+これらのクラスの付与はeffects.js内のanimateElement関数で行っています。
+//emlist[][javascript]{
   function animateElement(element) {
     ...
 
@@ -374,9 +365,9 @@ done	@<code>{cl-anim-done}	装飾を表示し終わった要素につける
   }
 //}
 
-ここまで来れば、あとは@<code>{cl-anim-enter-active}のクラスを対象に、明滅する挙動を定義すれば完成です。
+ここまで来れば、あとはcl-anim-enter-activeのクラスを対象に、明滅する挙動を定義すれば完成です。
 
-//emlist[public/stylesheet.css][css]{
+//emlist[][css]{
 @keyframes cl-border-blink-twice {
   0% {
     background: var(--chat-frame-border);
@@ -414,13 +405,13 @@ body:not(
 最後に、円形モチーフのロゴが回転するアニメーションを実装します。
 
 ロゴは半径・色・太さの異なる複数の円が重なった構造です。(詳細は @<hd>{design} からAppendixをご覧ください) 今回はそれぞれの円を異なるスピードで回転させることにします。すでにそれぞれのパーツを別々のSVGファイルで書き出してありますので、これらのファイルを使って2ステップに分けて実装していきます。
-その前に、SVGファイルは、@<code>{public}に@<code>{logos}というディレクトリを作ってまとめて格納しておきます@<fn>{logo-file-ref}。
+その前に、SVGファイルは、publicにlogosというディレクトリを作ってまとめて格納しておきます。
 
 
 ===== ロゴを複数枚のSVGファイルの重ね合わせに置き換える @<br>{}
-Chainlitの標準機能では、ロゴは1枚のみ登録可能です。(詳細は @<hd>{change-logo} @<fn>{logo-desc} をご覧ください) 今回は複数のSVGファイルを重ね合わせる必要があるので、JSで標準のロゴ要素を上書きします。このとき、各レイヤーに@<code>{cl-logo-layer-連番}というクラスを付与しておきます。これはのちのCSSのセレクタとして利用します。
+Chainlitの標準機能では、ロゴは1枚のみ登録可能です。(詳細は @<hd>{change-logo} @<fn>{logo-desc} をご覧ください) 今回は複数のSVGファイルを重ね合わせる必要があるので、JSで標準のロゴ要素を上書きします。このとき、各レイヤーにcl-logo-layer-連番というクラスを付与しておきます。これはのちのCSSのセレクタとして利用します。
 
-//emlist[public/effects.js][javascript]{
+//emlist[][javascript]{
 /* 重ね合わせロゴのコンテナを作る */
 function createLogoContainer(className) {
     const container = document.createElement('div');
@@ -449,9 +440,9 @@ function replaceLoginLogo() {
 //}
 
 ===== ロゴを回す @<br>{}
-上のJSで付与した@<code>{cl-logo-layer-連番}のクラスを使って、それぞれのレイヤーの回転速度を指定します。(@<code>{@keyframe}は省略します)
+上のJSで付与したcl-logo-layer-連番のクラスを使って、それぞれのレイヤーの回転速度を指定します。(@keyframeは省略します)
 
-//emlist[public/stylesheet.css][css]{
+//emlist[][css]{
 :is(.cl-layered-logo) .cl-logo-layer-1 { animation-duration: 16s; }
 :is(.cl-layered-logo) .cl-logo-layer-2 { animation-duration: 25s; }
 :is(.cl-layered-logo) .cl-logo-layer-3 { animation-duration: 18s; }
@@ -469,7 +460,7 @@ function replaceLoginLogo() {
 
 == おわりに
 セレクタを特定してCSSとJSで操作するという地味な作業が多い記事でしたが、フロントエンドの知識が乏しい中でもUIを変更できました。
-もっとデザインやフロントエンドの知識があればさらに派手な演出が実装できたかもしれない、と思いつつも、個人的にはこのデザインやアニメーションは気に入っています。
+もっとデザインやフロントエンドの知識があればさらに派手な演出が実装できたかもしれない、と思いつつも、個人的にはこのトンマナやアニメーションは気に入っています。
 また、一連の作業の中で、Chainlitの標準UIはシンプルで癖がなく、使いやすく設計されていると実感しました。
 
 UIデザインは、プロダクトの利便性の根幹の一つであると同時に、製作者がプロダクトに込めた思いを表現する場でもあります。もし業務やプライベートでChainlitを使うときは、ちょっと凝ったデザインにして、その思いをこっそり色や動きに忍ばせてみてはいかがでしょうか。
