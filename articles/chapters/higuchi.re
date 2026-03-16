@@ -76,8 +76,9 @@ Figmaでスタイルガイド@<fn>{color-tokens}とデザイン案@<fn>{design-c
 ==={change-logo} ロゴを変更する
 手始めにロゴを変えていきましょう。このロゴはfaviconにも使われます。
 
-まず、@<code>{.chainlit}ディレクトリと同じ階層に@<code>{public}ディレクトリを作り、faviconとロゴに使うファイルを配置します。
+まず、@<code>{.chainlit}ディレクトリ@<fn>{chainlit-dir}と同じ階層に@<code>{public}ディレクトリを作り、faviconとロゴに使うファイルを配置します。
 
+//footnote[chainlit-dir][.chainlitディレクトリについての詳細は@<chap>{first_steps}を参照してください。]
 
 //emlist[ディレクトリ構造]{
 .chainlit
