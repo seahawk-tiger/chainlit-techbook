@@ -4,6 +4,7 @@
 //lead{
 LLMがツールを使って複雑な処理をこなすようになった今、応答が返るまでの「待ち時間」はユーザー体験の一つの課題です。本章では、Chainlit の @<code>{cl.Step} を起点に、Markdownによる構造化・@<code>{cl.TaskList} によるタスクの表示・@<code>{cl.Plotly} による可視化の強化・@<code>{asyncio.gather} を活用したメッセージの並行表示という4つのアプローチで待ち時間の不安を解消する方法をいくつか紹介します。
 //}
+//pagebreak
 
 == 背景
 
