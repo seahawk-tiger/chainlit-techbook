@@ -2,15 +2,15 @@
 = Official data layer を使う！
 
 //lead{
-Chainlit の official data layer 使ってチャット履歴を保存してみます。
-オフィシャルのガイドに従って作業してみて気づいたことを紹介します。
+Chainlit ではオープンソースの data layer を使ってチャット履歴を保存することができます。
+本章では、Chainlit の official data layer を使ってみて気づいたことを紹介します。
 //}
 
 //pagebreak
 
 == Official data layer
 
-Chainlit ではチャット履歴を永続化するための data layer として次の 4 つの選択肢があります@<fn>{data-layers}。
+Chainlit ではチャット履歴を保存するための data layer として次の 4 つの選択肢があります@<fn>{data-layers}。
 //footnote[data-layers][https://docs.chainlit.io/data-layers/overview]
 
  * Official: PostgreSQL と S3 互換のストレージで最も手軽に利用可能です。
