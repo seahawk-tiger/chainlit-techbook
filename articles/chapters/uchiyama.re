@@ -1,4 +1,8 @@
 = ChainlitでLLMを観察しよう!
+//lead{
+コスト管理やプロンプト改善の観点からLLMの挙動を観察してみたいと考えているLLMアプリケーション開発者向けに、Chainlitを用いた手軽な観察手法を紹介します。
+//}
+//pagebreak
 
 == ChainlitはLLMをクイックに「観察」できるツール
 チャットUI付きのLLMアプリケーションを簡単に作るためのフレームワーク、というイメージが強いChainlit。
@@ -9,11 +13,11 @@ LLMアプリケーションの観察に特化したツールはいくつか存�
 ==== ハンズオンの準備
 ここから先のハンズオンでは、実際にChainlitを動かしていきます。
 
-本章で取り扱うソースコードはサポートページ @<fn>{support} で公開していますので、ハンズオンに取り組みたい方はリポジトリを実行環境にクローンし、 @<code>{uv sync} で環境を構築してください。
-//footnote[support][@<href>{https://github.com/y-uty/chainlit-observation}]
+本章で取り扱うソースコードはサポートサイト @<fn>{support} で公開していますので、ハンズオンに取り組みたい方はリポジトリを実行環境にクローンし、@<code>{ch04-observation}ディレクトリに移動して、@<code>{uv sync}を実行して環境を構築してください。
+//footnote[support][@<href>{https://github.com/statditto/chainlit-techbook-support/ch04-observation}]
 //emlist[ハンズオン環境構築][bash]{
-git clone https://github.com/y-uty/chainlit-observation.git
-cd chainlit-observation
+git clone https://github.com/statditto/chainlit-techbook-support.git
+cd ch04-observation
 uv sync
 //}
 

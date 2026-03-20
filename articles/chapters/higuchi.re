@@ -47,7 +47,7 @@ UI変更の実装のために、ベースとなる簡単なアプリケーショ
 必要に応じてご参照ください。
 
 //footnote[appendix-site][Appendixサイト: @<href>{https://seahawk-tiger.github.io/chainlit-ui-appendix/}]
-//footnote[finished-repo][変更後コードは以下のURLの @<code>{ch10-cyber-ui} ディレクトリを参照 @<href>{https://github.com/statditto/chainlit-techbook-support}]
+//footnote[finished-repo][変更後コードは以下のURLの @<code>{ch10-cyber-ui} ディレクトリから参照できます。 @<href>{https://github.com/statditto/chainlit-techbook-support}]
 
 //image[seahawk-qr-01][サンプルコード・AppendixサイトのQRコード][scale=0.6]
 
