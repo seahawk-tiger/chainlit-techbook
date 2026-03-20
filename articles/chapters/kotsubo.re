@@ -2,7 +2,7 @@
 = AIが今何をしているか？で不安にならないようにしよう！
 
 //lead{
-LLMがツールを使って複雑な処理をこなすようになった今、応答が返るまでの「待ち時間」はユーザー体験の一つの課題です。本章では、Chainlit の @<code>{cl.Step} を起点に、Markdownによる構造化・@<code>{cl.TaskList} によるタスクの表示・@<code>{cl.Plotly} による可視化の強化・@<code>{asyncio.gather} を活用したメッセージの並行表示という4つのアプローチで待ち時間の不安を解消する方法をいくつか紹介します。
+LLMがツールを使って複雑な処理をこなすようになった今、応答が返るまでの「待ち時間」はユーザー体験の一つの課題です。本章は、Chainlit を使い始めていてユーザー体験をさらに良くしたい方はもちろん、Chainlit 以外の LLM アプリケーション開発でも応用できる「待ち時間との向き合い方」を知りたい方にも役立つ内容です。Chainlit の @<code>{cl.Step} を起点に、Markdownによる構造化・@<code>{cl.TaskList} によるタスクの表示・@<code>{cl.Plotly} による可視化の強化・@<code>{asyncio.gather} を活用したメッセージの並行表示という4つのアプローチで待ち時間の不安を解消する方法をいくつか紹介します。
 //}
 //pagebreak
 
@@ -25,7 +25,7 @@ LLM の精度向上とツールによる機能拡張が進むにつれ、1回の
 
 本章では、複数のトピックを検索するリサーチアプリケーション @<fn>{support} を例に、Chainlit の @<code>{cl.Step} 機能を中心に説明します。このアプリケーションは、ユーザーがブラウザから質問を送ると、OpenAI の @<code>{web_search_preview} ツールを使って複数のトピックをウェブ検索し、結果を集約して回答を返すチャットボットです。処理の流れは次のとおりです。
 
-//footnote[support][本章のソースコードは以下から参照できます。@<href>{https://github.com/takuto0831/chainlit-playground}]
+//footnote[support][本章のソースコードは以下 @<code>{ch05-progress} ディレクトリから参照できます。@<href>{https://github.com/statditto/chainlit-techbook-support}]
 
  1. ユーザーのクエリから調査トピックを3つ生成する
  2. 各トピックについてウェブ検索を行い、ソースごとに要約・信頼度を付与する
